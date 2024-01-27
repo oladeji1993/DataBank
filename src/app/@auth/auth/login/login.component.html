@@ -1,0 +1,65 @@
+<div id="login">
+  <div class="main-container">
+    <mat-card>
+      <mat-card-content>
+        <div class="header">
+          <h2>Welcome to Data Bank</h2>
+          <P>Sign Into Your Account </P>
+        </div>
+        <form (ngSubmit)="onLogin()" name="loginForm" [formGroup]="loginForm">
+          <div class="emailInput">
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Email</mat-label>
+              <input
+                formControlName="email"
+                matInput
+                placeholder="Enter email address"
+                required
+              />
+              <mat-error *ngIf="!loginForm.controls['email'].valid">
+                Email is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div>
+            <mat-form-field class="full-width" appearance="outline">
+              <mat-label>Password</mat-label>
+              <input
+                formControlName="password"
+                matInput
+                [type]="hide ? 'password' : 'text'"
+                required
+              />
+              <button
+                type="button"
+                class="eye-icon"
+                mat-icon-button
+                matSuffix
+                (click)="hide = !hide"
+                [attr.aria-label]="'Hide Password'"
+                [attr.aria-pressed]="hide"
+              >
+                <mat-icon>
+                  {{ hide ? "visibility_off" : "visibility" }}
+                </mat-icon>
+              </button>
+              <mat-error *ngIf="!loginForm.controls['password'].valid">
+                Password is required
+              </mat-error>
+            </mat-form-field>
+            <span>
+              <a class="text-link" class="aLink" routerLink="/auth/register"
+                >Create New Account</a
+              >
+            </span>
+          </div>
+          <div class="login-btn">
+            
+            <button type="submit" mat-flat-button color="primary">Login</button>
+          </div>
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

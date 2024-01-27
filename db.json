@@ -1,0 +1,43 @@
+{
+  "register": [
+    {
+      "id": "7e76",
+      "username": "admin",
+      "email": "admin@yahoo.com",
+      "password": "Password",
+      "status": "Approved",
+      "role": "admin",
+      "canApprove": true
+    },
+    {
+      "email": "ola@yahoo.com",
+      "canApprove": true,
+      "adminId": "7e76",
+      "role": "user",
+      "password": "Password",
+      "status": "Approved",
+      "username": "ola",
+      "id": "ddae"
+    },
+    {
+      "email": "seun@yahoo.com",
+      "canApprove": true,
+      "adminId": "ddae",
+      "role": "user",
+      "password": "Password",
+      "status": "Approved",
+      "username": "seun",
+      "id": "ce27"
+    },
+    {
+      "id": "07e3",
+      "username": "dayo",
+      "email": "dayo@yahoo.com",
+      "password": "Password",
+      "status": "Pending approval",
+      "adminId": "ce27",
+      "role": "user",
+      "canApprove": false
+    }
+  ]
+}

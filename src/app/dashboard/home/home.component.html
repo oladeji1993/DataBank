@@ -1,0 +1,75 @@
+<div id="dashboard">
+  <div class="header">
+    <h2>DataBank</h2>
+    <div>
+      <a (click)="logOut()">Logout</a>
+    </div>
+  </div>
+
+  <div class="main-container">
+    <div class="user-details">
+      <h2>Welcome {{ userDetails?.username }}</h2>
+    </div>
+    <table mat-table [dataSource]="personalizedUsers" class="mat-elevation-z8">
+      <ng-container matColumnDef="Username">
+        <th mat-header-cell *matHeaderCellDef>Username</th>
+        <td mat-cell *matCellDef="let element">{{ element?.username }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Email">
+        <th mat-header-cell *matHeaderCellDef>Email</th>
+        <td mat-cell *matCellDef="let element">{{ element?.email }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Status">
+        <th mat-header-cell *matHeaderCellDef>Status</th>
+        <td mat-cell *matCellDef="let element">{{ element?.status }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Action">
+        <th mat-header-cell *matHeaderCellDef>Action</th>
+        <td mat-cell *matCellDef="let element">
+          <img
+            [matMenuTriggerFor]="menu"
+            src="/assets/images/options.png"
+            alt=""
+          />
+          <mat-menu class="drop-down-menu" #menu="matMenu">
+            <div class="item" *ngIf="element?.status == 'Pending approval'">
+              <span
+                (click)="approveUser(element)"
+                style="
+                  padding-left: 10px;
+                  padding-bottom: 20px;
+                  cursor: pointer;
+                "
+                >Approve user</span
+              >
+            </div>
+
+            <div>
+              <span
+                (click)="deleteUser(element)"
+                style="padding-left: 10px; cursor: pointer"
+                >Delete</span
+              >
+            </div>
+          </mat-menu>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <p class="empty-message">
+        You currently do not have any user atached to you
+      </p>
+    </table>
+    <mat-paginator
+      #paginator
+      [length]="pageCount"
+      [pageSizeOptions]="[10, 25, 40, 50]"
+      showFirstLastButtons
+    >
+    </mat-paginator>
+  </div>
+</div>
